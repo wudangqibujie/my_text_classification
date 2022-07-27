@@ -30,12 +30,13 @@ class Tokenize:
         self.word_to_idx = self._word_to_idx()
         self.idx_to_word = self._idx_to_word()
         self.special_num = 2
+        self.max_seq_length = 120
         self.vocab_num = len(self.word_to_idx) + self.special_num
 
     def _word_to_idx(self):
         map_ = dict()
         map_["[UNK]"] = 0
-        map_["[PAD]"] = 0
+        map_["[PAD]"] = 1
         st = 2
         with open(self.vocab_file, encoding="utf-8") as f:
             for i in f:
@@ -64,6 +65,14 @@ class Tokenize:
         string = re.sub(r"\s{2,}", " ", string)
         return string.strip().lower()
 
+    def _pad_words(self, ids):
+        if len(ids) < self.max_seq_length:
+            for _ in range(self.max_seq_length - len(ids)):
+                ids.append(self.word_to_idx["[PAD]"])
+        else:
+            ids = ids[: self.max_seq_length]
+        return ids
+
     def to_ids(self, lines):
         ids = []
         for word in lines:
@@ -74,8 +83,9 @@ class Tokenize:
         return ids
 
     def tokenize(self, words):
-        cleaned = self.clean_text(words)
-        ids = self.to_ids(cleaned)
+        cleaned = self.clean_text(" ".join(words))
+        ids = self.to_ids(cleaned.split())
+        ids = self._pad_words(ids)
         return ids
 
 
@@ -88,7 +98,6 @@ class Multi_H_Dataset:
         self.std_label_to_code = [dict() for _ in range(cls_std)]
         self._mark_max_label_code = [-1 for _ in range(cls_std)]
         self.length_info = []
-        self.max_seq_length = 120
 
     @property
     def get_label_num(self):
@@ -98,7 +107,7 @@ class Multi_H_Dataset:
         random.shuffle(self.files)
         batch_X, batch_y, batch_text, batch_label_text = [], [], [], []
         for f in self.files:
-            for tokens, texts, labels_code, labels_text in self._read_file(f):
+            for tokens, labels_code, texts, labels_text in self._read_file(f):
                 if len(batch_X) == self.batch_size:
                     yield batch_X, batch_y, batch_text, batch_label_text
                     batch_X, batch_y, batch_text, batch_label_text = [], [], [], []
@@ -118,21 +127,11 @@ class Multi_H_Dataset:
             if len(raw_data) < 2:
                 continue
             raw_labels, texts = raw_data
-            texts = self._pad_words(texts)
             text_ids = self.tokenizer.tokenize(texts)
             labels_text = self._get_labels(raw_labels)
             labels_code = self._label_to_code(labels_text)
             self.length_info.append(len(text_ids))
             yield text_ids, labels_code, [texts], labels_text
-
-    def _pad_words(self, words):
-        words
-        if len(words) < self.max_seq_length:
-            for _ in range(self.max_seq_length - len(words)):
-                words.append("[PAD]")
-        else:
-            words = words[: self.max_seq_length]
-        return words
 
     def _label_to_code(self, labels):
         labels_code = []
