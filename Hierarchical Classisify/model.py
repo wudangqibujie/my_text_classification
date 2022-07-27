@@ -85,7 +85,7 @@ class TextRNNConfig:
     batch_size = 64
     num_epoch = 50
     decay_rate = 0.9
-    decay_step = 1000
+    decay_steps = 1000
     is_training = True
 
 
@@ -110,8 +110,8 @@ class TextRNN:
 
         lstm_fw_cell = rnn.BasicLSTMCell(self.config.hidden_dim)
         lstm_bw_cell = rnn.BasicLSTMCell(self.config.hidden_dim)
-        lstm_fw_cell = rnn.DropoutWrapper([lstm_fw_cell], output_keep_prob=self.config.dropout_keep_rt)
-        lstm_bw_cell = rnn.DropoutWrapper([lstm_bw_cell], output_keep_prob=self.config.dropout_keep_rt)
+        lstm_fw_cell = rnn.DropoutWrapper(lstm_fw_cell, output_keep_prob=self.config.dropout_keep_rt)
+        lstm_bw_cell = rnn.DropoutWrapper(lstm_bw_cell, output_keep_prob=self.config.dropout_keep_rt)
 
         outputs, _ = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell, embedding_inputs, dtype=tf.float32)
         output_rnn = tf.concat(outputs, axis=2)
@@ -154,6 +154,9 @@ class TextRNN:
 if __name__ == '__main__':
     config = TextCNNConfig()
     model = TextCNN(config)
+    # config = TextRNNConfig()
+    # model = TextRNN(config)
+
     sess = tf.Session()
     sess.run([tf.global_variables_initializer()])
     for epoch in range(config.num_epoch):
@@ -178,3 +181,5 @@ if __name__ == '__main__':
             correct_cnt2 += acc2 * bt_num
             correct_cnt3 += acc3 * bt_num
         print(epoch, tnt_loss / cnt, correct_cnt1 / cnt, correct_cnt2 / cnt, correct_cnt3 / cnt)
+
+
