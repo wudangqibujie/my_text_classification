@@ -148,9 +148,6 @@ class TextRNN:
             self.acc3 = tf.reduce_mean(tf.cast(correct_pred3, tf.float32))
 
 
-
-
-
 if __name__ == '__main__':
     config = TextCNNConfig()
     model = TextCNN(config)
