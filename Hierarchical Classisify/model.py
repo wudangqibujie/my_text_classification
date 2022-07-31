@@ -117,34 +117,36 @@ class TextRNN:
         output_rnn = tf.concat(outputs, axis=2)
         self.output_rnn_last = output_rnn[:, -1, :]
 
-        self.logits1 = tf.layers.dense(self.output_rnn_last, self.config.first_cls_num, name="fc21")
-        self.logits2 = tf.layers.dense(self.output_rnn_last, self.config.sec_cls_num, name="fc22")
+        # self.logits1 = tf.layers.dense(self.output_rnn_last, self.config.first_cls_num, name="fc21")
+        # self.logits2 = tf.layers.dense(self.output_rnn_last, self.config.sec_cls_num, name="fc22")
         self.logits3 = tf.layers.dense(self.output_rnn_last, self.config.trd_cls_num, name="fc23")
 
-        self.first_pred = tf.argmax(tf.nn.softmax(self.logits1), 1, output_type=tf.int32)
-        self.sec_pred = tf.argmax(tf.nn.softmax(self.logits2), 1, output_type=tf.int32)
+        # self.first_pred = tf.argmax(tf.nn.softmax(self.logits1), 1, output_type=tf.int32)
+        # self.sec_pred = tf.argmax(tf.nn.softmax(self.logits2), 1, output_type=tf.int32)
         self.trd_pred = tf.argmax(tf.nn.softmax(self.logits3), 1, output_type=tf.int32)
         with tf.name_scope("loss"):
-            self.cross_entropy1 = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.input_fst_y,
-                                                                                 logits=self.logits1)
-            self.cross_entropy2 = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.input_sec_y,
-                                                                                 logits=self.logits2)
+            # self.cross_entropy1 = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.input_fst_y,
+            #                                                                      logits=self.logits1)
+            # self.cross_entropy2 = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.input_sec_y,
+            #                                                                      logits=self.logits2)
             self.cross_entropy3 = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.input_trd_y,
                                                                                  logits=self.logits3)
-            self.debug1 = tf.reduce_mean(self.cross_entropy1)
-            self.debug2 = tf.reduce_mean(self.cross_entropy2)
+            # self.debug1 = tf.reduce_mean(self.cross_entropy1)
+            # self.debug2 = tf.reduce_mean(self.cross_entropy2)
             self.debug3 = tf.reduce_mean(self.cross_entropy3)
-            loss = tf.reduce_mean(self.cross_entropy1 + self.cross_entropy2 + self.cross_entropy3)
+            # loss = tf.reduce_mean(self.cross_entropy1 + self.cross_entropy2 + self.cross_entropy3)
+            loss = tf.reduce_mean(self.cross_entropy3)
+
             l2_losses = tf.add_n(
                 [tf.nn.l2_loss(v) for v in tf.trainable_variables() if 'bias' not in v.name]) * self.l2_lambda
             self.loss = loss + l2_losses
         self.optim = tf.train.AdamOptimizer(learning_rate=self.config.learning_rate).minimize(self.loss)
         with tf.name_scope("acc"):
-            correct_pred1 = tf.equal(self.input_fst_y, self.first_pred)
-            correct_pred2 = tf.equal(self.input_sec_y, self.sec_pred)
+            # correct_pred1 = tf.equal(self.input_fst_y, self.first_pred)
+            # correct_pred2 = tf.equal(self.input_sec_y, self.sec_pred)
             correct_pred3 = tf.equal(self.input_trd_y, self.trd_pred)
-            self.acc1 = tf.reduce_mean(tf.cast(correct_pred1, tf.float32))
-            self.acc2 = tf.reduce_mean(tf.cast(correct_pred2, tf.float32))
+            # self.acc1 = tf.reduce_mean(tf.cast(correct_pred1, tf.float32))
+            # self.acc2 = tf.reduce_mean(tf.cast(correct_pred2, tf.float32))
             self.acc3 = tf.reduce_mean(tf.cast(correct_pred3, tf.float32))
 
 
@@ -178,5 +180,12 @@ if __name__ == '__main__':
             correct_cnt2 += acc2 * bt_num
             correct_cnt3 += acc3 * bt_num
         print(epoch, tnt_loss / cnt, correct_cnt1 / cnt, correct_cnt2 / cnt, correct_cnt3 / cnt)
-
+# 0 11.966170461870728 0.27750660976986347 0.07240187106716553 0.40187105963160796
+# 1 10.699419356177971 0.3305877567986199 0.09192597112817834 0.4198698393753541
+# 2 10.287452510975715 0.39800691479149936 0.1007728289622637 0.4198698393753541
+# 3 9.907683675260547 0.4322757780345834 0.11002643891277414 0.4198698393753541
+# 4 9.57416841298651 0.45983323176653373 0.12151718530284938 0.4198698393753541
+# 5 9.286202955953906 0.4869839334138797 0.14053284523234708 0.42027659145995855
+# 6 8.981526946594785 0.5115924345203258 0.15019320724927873 0.42190359979837627
+# 7 8.748225664399081 0.5343705512460519 0.1658531625580686 0.4257677446021184
 
