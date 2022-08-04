@@ -5,5 +5,9 @@
     <orderEntry type="jdk" jdkName="Python 3.6 (py36tf14) (8)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="text-classification-cnn-rnn" />
+    <orderEntry type="module" module-name="transformers" />
+    <orderEntry type="module" module-name="jay_bert" />
+    <orderEntry type="module" module-name="bert-master" />
+    <orderEntry type="module" module-name="Hierarchical Classisify" />
   </component>
 </module>

@@ -1,6 +1,42 @@
 import random
 import re
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import jieba
 
+# tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
+tokenizer = AutoTokenizer.from_pretrained("hfl/chinese-bert-wwm")
+
+model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', return_dict=True)
+model.train()
+
+
+sen = "弱小的我也有大梦想"
+tokens = tokenizer.tokenize(sen)
+print(tokens)
+print(len(tokenizer.vocab))
+ids = tokenizer.convert_tokens_to_ids(tokens)
+print(ids)
+ids_ = tokenizer.encode(sen)
+print(ids_)
+ids1 = tokenizer.encode(sen, padding="max_length", max_length=15)
+print(ids1)
+
+ids2 = tokenizer.encode(sen, max_length=5, truncation=True)
+print(ids2)
+attenyion_mask = [1 if i != 0 else 0 for i in ids2]
+token_type_ids = [0] * len(ids2)
+
+inputs = tokenizer.encode_plus(sen, padding="max_length", max_length=15)
+print(inputs)
+
+inputs2 = tokenizer(sen, padding="max_length", max_length=15)
+print(inputs2)
+
+slice_word = jieba.cut(sen, cut_all=False)
+print(list(slice_word))
+
+deodeed = tokenizer.decode(inputs2["input_ids"])
+print(deodeed)
 # CLS_STD = 3
 # f = open("Sample_data/sample_train.txt")
 # for i in f:
@@ -158,14 +194,14 @@ class Multi_H_Dataset:
         return real_labels[0]
 
 
-if __name__ == '__main__':
-    tokenizer = Tokenize("vocab.txt")
-    dataset = Multi_H_Dataset(["Sample_data/sample_train.txt"], 3, tokenizer)
-    for bt_x, bt_y, bt_text, bt_l_t in dataset.get_batch():
-        print(bt_x)
-        print(bt_y)
-        print(bt_text)
-        print(bt_l_t)
-        print(len(bt_l_t))
-    print(dataset.get_label_num)
-    print(tokenizer.vocab_num)
+# if __name__ == '__main__':
+#     tokenizer = Tokenize("vocab.txt")
+#     dataset = Multi_H_Dataset(["Sample_data/sample_train.txt"], 3, tokenizer)
+#     for bt_x, bt_y, bt_text, bt_l_t in dataset.get_batch():
+#         print(bt_x)
+#         print(bt_y)
+#         print(bt_text)
+#         print(bt_l_t)
+#         print(len(bt_l_t))
+#     print(dataset.get_label_num)
+#     print(tokenizer.vocab_num)
