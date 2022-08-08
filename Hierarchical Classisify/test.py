@@ -8,11 +8,18 @@
 # print(tokens)
 import tensorflow as tf
 import numpy as np
-a = np.ones(shape=(10, 20, 30))
-input_a = tf.placeholder(shape=[None, 20, 30], dtype=tf.int32)
-sh = tf.shape(input_a)
+# a = np.ones(shape=(10, 200))
+# input_a = tf.placeholder(shape=[None, 200], dtype=tf.int32)
+# out = tf.expand_dims(input_a, axis=[-1])
+# out = tf.reshape(out, [-1])
+# sess = tf.Session()
+# out = sess.run(out, feed_dict={input_a: a})
+# print(out.shape)
+
+a = tf.constant(np.array([[1, 1, 1, 1, 1, 0, 0]]), dtype=tf.float32)
+b = tf.constant(np.ones(shape=[5, 1]), dtype=tf.float32)
+c = a * b
 sess = tf.Session()
-out, out_sh = sess.run([input_a, sh], feed_dict={input_a: a})
-print(a.shape, type(a.shape))
-print(out.shape, type(out))
-print(out_sh)
+out = sess.run(c)
+print(out.shape)
+print(out)

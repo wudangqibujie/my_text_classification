@@ -15,6 +15,8 @@ for doc_ix, d in enumerate(corpus.documents):
     doc2Sample = Doc2Sample(doc_ix, corpus.documents, max_seq_length, special_tokens_num, list(tokenize.vocab.keys()))
     for _ in range(5):
         doc2Sample.create_sent_pairs()
+    for ins in doc2Sample.instances:
+        tf.logging.info(ins)
     writeCorpusTFDataset = WriteCorpusTFDataset(doc2Sample.instances,
                                                 output_tfrecords,
                                                 tokenize,

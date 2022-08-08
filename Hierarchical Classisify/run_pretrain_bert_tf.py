@@ -26,6 +26,7 @@ while True:
             masked_lm_weights = batch_sample_info["masked_lm_weights"]
             next_sent_label = batch_sample_info["next_sent_label"]
             segment_ids = batch_sample_info["segment_ids"]
+            print(input_mask)
             tf.logging.info([input_ids.shape, input_mask.shape, masked_lm_ids.shape, masked_lm_positions.shape, masked_lm_weights.shape, next_sent_label.shape, segment_ids.shape])
     except tf.errors.OutOfRangeError:
         break

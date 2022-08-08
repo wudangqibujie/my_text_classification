@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 
 
 def assert_rank(tensor, expected_rank, name=None):
@@ -35,3 +36,10 @@ def get_shape_list(tensor, expected_rank=None, name=None):
     for ix in non_static_indexes:
         shape[ix] = dyn_shape[ix]
     return shape
+
+
+def gelu(x):
+    cdf = 0.5 * (1.0 + tf.tanh(
+        (np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))
+    ))
+    return x * cdf
