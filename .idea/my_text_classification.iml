@@ -9,5 +9,6 @@
     <orderEntry type="module" module-name="jay_bert" />
     <orderEntry type="module" module-name="bert-master" />
     <orderEntry type="module" module-name="Hierarchical Classisify" />
+    <orderEntry type="module" module-name="neuralprophet" />
   </component>
 </module>

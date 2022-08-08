@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/../bert-master/.idea/bert-master.iml" filepath="$PROJECT_DIR$/../bert-master/.idea/bert-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../jay_bert/.idea/jay_bert.iml" filepath="$PROJECT_DIR$/../jay_bert/.idea/jay_bert.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_text_classification.iml" filepath="$PROJECT_DIR$/.idea/my_text_classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/neuralprophet/.idea/neuralprophet.iml" filepath="$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/neuralprophet/.idea/neuralprophet.iml" />
       <module fileurl="file://$PROJECT_DIR$/../text-classification-cnn-rnn/.idea/text-classification-cnn-rnn.iml" filepath="$PROJECT_DIR$/../text-classification-cnn-rnn/.idea/text-classification-cnn-rnn.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/transformers/.idea/transformers.iml" filepath="$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/transformers/.idea/transformers.iml" />
     </modules>
