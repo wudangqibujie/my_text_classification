@@ -11,7 +11,7 @@ def assert_rank(tensor, expected_rank, name=None):
     else:
         for ix in expected_rank:
             expected_rank_dict[ix] = True
-    actual_rank = tensor.shape.ndim
+    actual_rank = tensor.shape.ndims
     if actual_rank not in expected_rank_dict:
         scope_name = tf.get_variable_scope().name
         raise ValueError(
@@ -43,3 +43,39 @@ def gelu(x):
         (np.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3)))
     ))
     return x * cdf
+
+
+def reshape_to_matrix(input_tensor):
+    ndims = input_tensor.shape.ndims
+    if ndims == 2:
+        return input_tensor
+    width = input_tensor.shape[-1]
+    output_tensor = tf.reshape(input_tensor, [-1, width])
+    return output_tensor
+
+
+def reshape_from_matrix(output_tensor, orig_shape_list):
+    if len(orig_shape_list) == 2:
+        return output_tensor
+    output_shape = get_shape_list(output_tensor)
+    orig_dims = orig_shape_list[0: -1]
+    width = output_shape[-1]
+    return tf.reshape(output_tensor, orig_dims + [width])
+
+
+def get_activation(activation_string):
+    if not isinstance(activation_string, str):
+        return activation_string
+    if not activation_string:
+        return None
+    act = activation_string.lower()
+    if act == "linear":
+        return None
+    elif act == "relu":
+        return tf.nn.relu6
+    elif act == "gelu":
+        return gelu
+    elif act == "tanh":
+        return tf.tanh
+    else:
+        raise

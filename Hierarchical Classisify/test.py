@@ -16,10 +16,15 @@ import numpy as np
 # out = sess.run(out, feed_dict={input_a: a})
 # print(out.shape)
 
-a = tf.constant(np.array([[1, 1, 1, 1, 1, 0, 0]]), dtype=tf.float32)
-b = tf.constant(np.ones(shape=[5, 1]), dtype=tf.float32)
-c = a * b
+# x = tf.constant(np.ones(shape=[64, 12, 100, 10]), dtype=tf.float32)
+# out = tf.nn.softmax(x)
+
+# print(out.shape)
+# print(out)
+
+debug = tf.range(0, 64, dtype=tf.int32) * 200
 sess = tf.Session()
-out = sess.run(c)
-print(out.shape)
+out = sess.run(debug)
 print(out)
+
+
