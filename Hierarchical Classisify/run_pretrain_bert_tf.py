@@ -16,11 +16,20 @@ is_traing = True
 input_ids_ph = tf.placeholder(dtype=tf.int64, shape=[None, max_seq_length])
 input_mask_ph = tf.placeholder(dtype=tf.int64, shape=[None, max_seq_length])
 segment_ids_ph = tf.placeholder(dtype=tf.int64, shape=[None, max_seq_length])
+masked_lm_positions_ph = tf.placeholder(dtype=tf.int64, shape=[None, max_pred_per_seq])
+mask_lm_ids_ph = tf.placeholder(dtype=tf.int64, shape=[None, max_pred_per_seq])
+mask_lm_weights_ph = tf.placeholder(dtype=tf.float32, shape=[None, max_pred_per_seq])
+next_sentence_labels_ph = tf.placeholder(dtype=tf.int64, shape=[None, 1])
+
 model = BertModel(config=config,
                   is_traing=is_traing,
                   input_ids=input_ids_ph,
                   input_mask=input_mask_ph,
-                  token_type_ids=segment_ids_ph)
+                  token_type_ids=segment_ids_ph,
+                  mask_lm_position=masked_lm_positions_ph,
+                  mask_lm_ids=mask_lm_ids_ph,
+                  mask_lm_weights=mask_lm_weights_ph,
+                  next_sentence_labels=next_sentence_labels_ph)
 
 init_op = tf.global_variables_initializer()
 sess = tf.Session()
@@ -39,7 +48,15 @@ while True:
             segment_ids = batch_sample_info["segment_ids"]
             tf.logging.info([input_ids.shape, input_mask.shape, masked_lm_ids.shape, masked_lm_positions.shape,
                              masked_lm_weights.shape, next_sent_label.shape, segment_ids.shape])
-            out, att_out = sess.run([model.embedding_output, model.pool_output], feed_dict={input_ids_ph: input_ids, input_mask_ph: input_mask, segment_ids_ph: segment_ids})
+            out, att_out = sess.run([model.embedding_output, model.pool_output],
+                                    feed_dict={input_ids_ph: input_ids,
+                                               input_mask_ph: input_mask,
+                                               segment_ids_ph: segment_ids,
+                                               masked_lm_positions_ph: masked_lm_positions,
+                                               mask_lm_ids_ph: masked_lm_ids,
+                                               mask_lm_weights_ph: masked_lm_weights,
+                                               next_sentence_labels_ph: next_sent_label})
+
             tf.logging.info(out.shape)
             tf.logging.info(att_out.shape)
     except tf.errors.OutOfRangeError:

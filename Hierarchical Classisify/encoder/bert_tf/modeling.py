@@ -1,11 +1,13 @@
+import collections
+import re
 import tensorflow as tf
 import encoder.bert_tf.utils as utils
-from encoder.bert_tf.config import BertConfig
 import math
 
 
 class BertModel:
-    def __init__(self, config, input_ids, is_traing, input_mask, token_type_ids, scope=None):
+    def __init__(self, config, input_ids, is_traing, input_mask, token_type_ids, mask_lm_position, mask_lm_ids,
+                 mask_lm_weights, next_sentence_labels, init_checkpoint, scope=None):
         self.config = config
         self.input_ids = input_ids
         self.input_mask = input_mask
@@ -64,6 +66,38 @@ class BertModel:
                     activation=tf.tanh,
                     kernel_initializer=tf.truncated_normal_initializer(self.config.initializer_range)
                 )
+        mask_lm_loss, mask_lm_sample_loss, mask_lm_log_probs = self.get_masked_lm_output(self.sequence_output,
+                                                                                         self.embedding_table,
+                                                                                         mask_lm_position,
+                                                                                         mask_lm_ids,
+                                                                                         mask_lm_weights)
+        next_sent_loss, next_sent_sample_loss, next_sent_log_probs = self.get_next_sentence_output(self.pool_output,
+                                                                                                   next_sentence_labels)
+        total_loss = mask_lm_loss + next_sent_loss
+        self.total_loss = total_loss
+        tvars = tf.trainable_variables()
+        assignment_map, initialized_variable_names = self.get_assignment_map_from_checkpoint(tvars, init_checkpoint)
+        tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
+
+    def get_assignment_map_from_checkpoint(self, tvars, init_checkpoint):
+        initialized_variable_names = {}
+        name_to_variable = collections.OrderedDict()
+        for var in tvars:
+            name = var.name
+            m = re.match("^(.*):\\d+$", name)
+            if m is not None:
+                name = m.group(1)
+            name_to_variable[name] = var
+        init_vars = tf.train.list_variables(init_checkpoint)
+        assignment_map = collections.OrderedDict()
+        for x in init_vars:
+            (name, var) = (x[0], x[1])
+            if name not in name_to_variable:
+                continue
+            assignment_map[name] = name
+            initialized_variable_names[name] = 1
+            initialized_variable_names[name + ":0"] = 1
+        return assignment_map, initialized_variable_names
 
     def gather_indexes(self, sequnce_tensor, positions):
         sequence_shape = utils.get_shape_list(sequnce_tensor, expected_rank=3)
@@ -72,11 +106,60 @@ class BertModel:
         width = sequence_shape[2]
         debug = tf.cast(tf.range(0, batch_size, dtype=tf.int32) * seq_length, tf.int64)
         flat_offsets = tf.reshape(debug, [-1, 1])
-        flat_positions = tf.reshape(positions + flat_offsets, [-1])
+        flat_positions = tf.reshape(positions + flat_offsets, [-1])  # [batch, seq_length] [batch, 1]
+        flat_sequence_tensor = tf.reshape(sequnce_tensor,
+                                          [batch_size * seq_length, width])
+        output_tensor = tf.gather(flat_sequence_tensor, flat_positions)
+        return output_tensor
 
+    def get_next_sentence_output(self, input_tensor, labels):
+        with tf.variable_scope("cls/seq_relationship"):
+            outpue_weights = tf.get_variable(
+                "outpue_weights",
+                shape=[2, self.config.hidden_size],
+                initializer=tf.truncated_normal_initializer(self.config.initializer_range)
+            )
+            output_bias = tf.get_variable(
+                "output_bias",
+                shape=[2],
+                initializer=tf.zeros_initializer()
+            )
+            logits = tf.matmul(input_tensor, outpue_weights, transpose_b=True)
+            logits = tf.nn.bias_add(logits, output_bias)
+            log_probs = tf.nn.log_softmax(logits, dim=-1)
+            labels = tf.reshape(labels, [-1])
+            onehot_labels = tf.one_hot(labels, depth=2, dtype=tf.float32)
+            per_sample_loss = -tf.reduce_sum(onehot_labels * log_probs, axis=-1)
+            loss = tf.reduce_mean(per_sample_loss)
+            return loss, per_sample_loss, log_probs
 
     def get_masked_lm_output(self, input_tensor, output_weights, positions, label_ids, label_weights):
-
+        input_tensor = self.gather_indexes(input_tensor, positions)
+        with tf.variable_scope("cls/predictions"):
+            with tf.variable_scope("transform"):
+                input_tensor = tf.layers.dense(
+                    input_tensor,
+                    units=self.config.hidden_size,
+                    activation=utils.get_activation(self.config.hidden_act),
+                    kernel_initializer=tf.truncated_normal_initializer(self.config.initializer_range)
+                )
+                input_tensor = self.layer_norm(input_tensor)
+            output_bias = tf.get_variable(
+                "output_bias",
+                shape=[self.config.vocab_size],
+                initializer=tf.zeros_initializer()
+            )
+            logits = tf.matmul(input_tensor, output_weights, transpose_b=True)
+            logits = tf.nn.bias_add(logits, output_bias)
+            log_probs = tf.nn.log_softmax(logits, dim=-1)
+            label_ids = tf.reshape(label_ids, [-1])
+            label_weights = tf.reshape(label_weights, [-1])
+            onehot_labels = tf.one_hot(label_ids, depth=self.config.vocab_size, dtype=tf.float32)
+            per_sample_loss = -tf.reduce_sum(log_probs * onehot_labels, axis=[-1])
+            numerator = tf.reduce_sum(label_weights * per_sample_loss)
+            denominator = tf.reduce_sum(label_weights) + 1e-5
+            loss = numerator / denominator
+        return loss, per_sample_loss, log_probs
 
     def _embedding_lookup(self, input_ids, vocab_size, embedding_size=128, initializer_range=0.02,
                           word_embedding_name="word_embeddings"):
@@ -228,8 +311,6 @@ class BertModel:
                                                size_per_head)
         # [batch_size, num_attention_heads, seq_length, seq_length]
         attention_scores = tf.matmul(query_layer, key_layer, transpose_b=True)
-        print(query_layer.shape, key_layer.shape, attention_scores.shape)
-        print(from_seq_length, to_seq_length)
         attention_scores = tf.multiply(attention_scores, 1.0 / math.sqrt(float(size_per_head)))
         if attention_mask is not None:
             # [batch, 1, seq_len, seq_len]
@@ -284,7 +365,6 @@ class BertModel:
                 with tf.variable_scope(f"attention"):
                     attention_heads = []
                     with tf.variable_scope("self"):
-                        print(layer_idx, layer_input.shape)
                         attention_head = self.attention_layer(
                             from_tensor=layer_input,
                             to_tensor=layer_input,

@@ -22,9 +22,13 @@ import numpy as np
 # print(out.shape)
 # print(out)
 
-debug = tf.range(0, 64, dtype=tf.int32) * 200
-sess = tf.Session()
-out = sess.run(debug)
-print(out)
+# debug = tf.range(0, 64, dtype=tf.int32) * 200
+# sess = tf.Session()
+# out = sess.run(debug)
+# print(out)
+
+init_checkpoint = r"E:\NLP——project\uncased_L-12_H-768_A-12\bert_model.ckpt"
+init_vars = tf.train.list_variables(init_checkpoint)
+print(init_vars)
 
 
