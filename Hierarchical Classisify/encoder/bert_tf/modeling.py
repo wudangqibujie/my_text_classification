@@ -2,12 +2,13 @@ import collections
 import re
 import tensorflow as tf
 import encoder.bert_tf.utils as utils
+from encoder.bert_tf.optimization import AdamWeightDecayOptimizer
 import math
 
 
 class BertModel:
     def __init__(self, config, input_ids, is_traing, input_mask, token_type_ids, mask_lm_position, mask_lm_ids,
-                 mask_lm_weights, next_sentence_labels, init_checkpoint, scope=None):
+                 mask_lm_weights, next_sentence_labels, init_checkpoint, learning_rate, num_steps, num_warmup_steps, scope=None):
         self.config = config
         self.input_ids = input_ids
         self.input_mask = input_mask
@@ -78,6 +79,54 @@ class BertModel:
         tvars = tf.trainable_variables()
         assignment_map, initialized_variable_names = self.get_assignment_map_from_checkpoint(tvars, init_checkpoint)
         tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
+
+        self.train_op = self.create_optimizer(total_loss,
+                                              learning_rate,
+                                              num_steps,
+                                              num_warmup_steps)
+
+    def create_optimizer(self, loss, init_learning_rate, num_steps, num_warmup_steps):
+        gloabel_step = tf.train.get_or_create_global_step()
+        learning_rate = tf.constant(value=init_learning_rate,
+                                    shape=[],
+                                    dtype=tf.float32)
+        learning_rate = tf.train.polynomial_decay(
+            learning_rate,
+            gloabel_step,
+            num_steps,
+            end_learning_rate=0.0,
+            power=1.0,
+            cycle=False
+        )
+        if num_warmup_steps:
+            global_steps_int = tf.cast(gloabel_step, tf.int32)
+            warmup_steps_int = tf.constant(num_warmup_steps, dtype=tf.int32)
+
+            global_steps_float = tf.cast(global_steps_int, tf.float32)
+            warmup_steps_float = tf.cast(warmup_steps_int, tf.float32)
+
+            warmup_percent_done = global_steps_float / warmup_steps_float
+            warmup_learning_rate = init_learning_rate * warmup_percent_done
+
+            is_warmup = tf.cast(global_steps_int < warmup_steps_int, tf.float32)
+            learning_rate = (
+                (1.0 - is_warmup) * learning_rate + is_warmup * warmup_learning_rate
+            )
+        optimizer = AdamWeightDecayOptimizer(
+            learning_rate=learning_rate,
+            weight_decay_rate=0.01,
+            beta_1=0.9,
+            beta_2=0.999,
+            epsilon=1e-6,
+            exclude_from_weight_decay=["LayerNorm", "layer_norm", "bias"]
+        )
+        tvars = tf.trainable_variables()
+        grads = tf.gradients(loss, tvars)
+        grads, _ = tf.clip_by_global_norm(grads, clip_norm=1.0)
+        train_op = optimizer.apply_gradients(zip(grads, tvars), global_step=gloabel_step)
+        new_global_step = gloabel_step + 1
+        train_op = tf.group(train_op, gloabel_step.assign(new_global_step))
+        return train_op
 
     def get_assignment_map_from_checkpoint(self, tvars, init_checkpoint):
         initialized_variable_names = {}
