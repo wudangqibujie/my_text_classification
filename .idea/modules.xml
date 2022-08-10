@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" filepath="$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../bert/.idea/bert.iml" filepath="$PROJECT_DIR$/../../bert/.idea/bert.iml" />
       <module fileurl="file://$PROJECT_DIR$/../bert-master/.idea/bert-master.iml" filepath="$PROJECT_DIR$/../bert-master/.idea/bert-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../jay_bert/.idea/jay_bert.iml" filepath="$PROJECT_DIR$/../jay_bert/.idea/jay_bert.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/my_py_ml.iml" filepath="$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/my_py_ml.iml" />

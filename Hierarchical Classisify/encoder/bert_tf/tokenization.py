@@ -1,4 +1,6 @@
 import collections
+import re
+
 import unicodedata
 
 
@@ -191,3 +193,5 @@ class BaseTokenize:
             for sub_token in self.wordpiece_tokenize(token):
                 split_tokens.append(sub_token)
         return split_tokens
+
+

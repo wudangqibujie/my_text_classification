@@ -12,5 +12,6 @@
     <orderEntry type="module" module-name="neuralprophet" />
     <orderEntry type="module" module-name="bert-master" />
     <orderEntry type="module" module-name="my_py_ml" />
+    <orderEntry type="module" module-name="bert" />
   </component>
 </module>
