@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CNN_LSTM_CTC_Tensorflow/.idea/CNN_LSTM_CTC_Tensorflow.iml" filepath="$PROJECT_DIR$/../CNN_LSTM_CTC_Tensorflow/.idea/CNN_LSTM_CTC_Tensorflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" filepath="$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OCR/.idea/OCR.iml" filepath="$PROJECT_DIR$/OCR/.idea/OCR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../text_classification/a01_FastText/.idea/a01_FastText.iml" filepath="$PROJECT_DIR$/../text_classification/a01_FastText/.idea/a01_FastText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/tensorflow/contrib/.idea/contrib.iml" filepath="$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/tensorflow/contrib/.idea/contrib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ML_project/my_py_ml/tensorflow-logistics-regression/data/.idea/data.iml" filepath="$PROJECT_DIR$/../../ML_project/my_py_ml/tensorflow-logistics-regression/data/.idea/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fastText/.idea/fastText.iml" filepath="$PROJECT_DIR$/../fastText/.idea/fastText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/my_py_ml.iml" filepath="$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/my_py_ml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/my_text_classification.iml" filepath="$PROJECT_DIR$/.idea/my_text_classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NLP-Models-Tensorflow/ocr/.idea/ocr.iml" filepath="$PROJECT_DIR$/../NLP-Models-Tensorflow/ocr/.idea/ocr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NLP-Models-Tensorflow/text-classification/.idea/text-classification.iml" filepath="$PROJECT_DIR$/../NLP-Models-Tensorflow/text-classification/.idea/text-classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../textClassifier/.idea/textClassifier.iml" filepath="$PROJECT_DIR$/../textClassifier/.idea/textClassifier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../text_classification/.idea/text_classification.iml" filepath="$PROJECT_DIR$/../text_classification/.idea/text_classification.iml" />
+    </modules>
+  </component>
+</project>
