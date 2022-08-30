@@ -4,7 +4,7 @@
 #
 # tokenizer = AutoTokenizer.from_pretrained("hfl/chinese-bert-wwm")
 # sen = "弱小的我也有大梦想"
-# tokens = tokenizer.tokenize(sen)
+# tokens = tokenizer.tokenize_jay(sen)
 # print(tokens)
 import tensorflow as tf
 import numpy as np
