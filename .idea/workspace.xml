@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b3a95c6-c0bc-45a0-a948-7ff67bb12272" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../ML_project/my_py_ml/tensorflow-logistics-regression/data/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ML_project/my_py_ml/tensorflow-logistics-regression/data/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ML_project/my_py_ml/tensorflow-logistics-regression/data/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CNN_LSTM_CTC_Tensorflow/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CNN_LSTM_CTC_Tensorflow/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CNN_LSTM_CTC_Tensorflow/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hierarchical Classisify/data/stopwords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hierarchical Classisify/dataset/dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hierarchical Classisify/encoder/my_fasttext_tf/fastext_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hierarchical Classisify/main_fasttext.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/generrate_fake_sample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OCR/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/.idea/textClassifier.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/BERT/.idea/BERT.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/BERT/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/BERT/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/BERT/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/BERT/dataProcessor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/Bi-LSTM/Bi-LSTM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/ELMo/elmo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/charCNN/charCNN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/main_lstm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/main_w2v.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/pp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../textClassifier/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/.idea/text_classification.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/a01_FastText/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/a01_FastText/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../text_classification/a01_FastText/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ML_project/my_py_ml/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hierarchical Classisify/read_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hierarchical Classisify/read_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../textClassifier/BERT/bert/run_pretraining.py" beforeDir="false" afterPath="$PROJECT_DIR$/../textClassifier/BERT/bert/run_pretraining.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../textClassifier/BERT/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../textClassifier/BERT/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../text_classification/a01_FastText/p6_fastTextB_train_multilabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/../text_classification/a01_FastText/p6_fastTextB_train_multilabel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../text_classification/a03_TextRNN/p8_TextRNN_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../text_classification/a03_TextRNN/p8_TextRNN_model.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2CerACbPdVZpIrAQ6arQ7dBpoGZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/tensorflow/contrib" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify\data" />
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify\corpus" />
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify\encoder\bert_tf" />
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify\corpus" />
+      <recent name="D:\NLP_project\my_text_classification\Hierarchical Classisify" />
+      <recent name="D:\NLP_project\my_text_classification" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.model">
+    <configuration name="dataset (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OCR" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OCR/dataset.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="generrate_fake_sample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OCR" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OCR/generrate_fake_sample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OCR" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OCR/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_fasttext" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Hierarchical Classisify" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Hierarchical Classisify" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Hierarchical Classisify/main_fasttext.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OCR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OCR" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OCR/model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.model" />
+        <item itemvalue="Python.dataset (1)" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.generrate_fake_sample" />
+        <item itemvalue="Python.main_fasttext" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b3a95c6-c0bc-45a0-a948-7ff67bb12272" name="Default Changelist" comment="" />
+      <created>1659173748672</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659173748672</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1255" y="606" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1659504264388">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1255" y="606" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1659504264388" />
+    <state x="687" y="216" key="FileChooserDialogImpl" timestamp="1660902320912">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="687" y="216" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1660902320912" />
+    <state width="1894" height="141" key="GridCell.Tab.0.bottom" timestamp="1660902421876">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="141" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1660902421876" />
+    <state width="1894" height="141" key="GridCell.Tab.0.center" timestamp="1660902421876">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="141" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1660902421876" />
+    <state width="1894" height="141" key="GridCell.Tab.0.left" timestamp="1660902421876">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="141" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1660902421876" />
+    <state width="1894" height="141" key="GridCell.Tab.0.right" timestamp="1660902421876">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="141" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1660902421876" />
+    <state width="1894" height="319" key="GridCell.Tab.1.bottom" timestamp="1659693405481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="319" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1659693405481" />
+    <state width="1894" height="319" key="GridCell.Tab.1.center" timestamp="1659693405481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="319" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1659693405481" />
+    <state width="1894" height="319" key="GridCell.Tab.1.left" timestamp="1659693405481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="319" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1659693405481" />
+    <state width="1894" height="319" key="GridCell.Tab.1.right" timestamp="1659693405481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="319" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1659693405481" />
+    <state x="336" y="78" key="SettingsEditor" timestamp="1660890525407">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="336" y="78" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1660890525407" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1660199293501">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1660199293501" />
+  </component>
+</project>

@@ -1,5 +1,6 @@
 import simplejson
 import gzip
+import tensorflow as tf
 
 
 cate_set = ["Amazon Instant Video" ,
