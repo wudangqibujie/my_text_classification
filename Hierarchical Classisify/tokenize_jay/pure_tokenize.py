@@ -1,5 +1,6 @@
 import jieba
 import json
+import collections
 
 
 class Corpus:
@@ -53,3 +54,50 @@ class Corpus:
 class BaseTokenizer:
     def __init__(self, vocab_file):
         self.vocab_file = vocab_file
+        self.vocab = self._load_vocab(vocab_file)
+        self.vocab_inverse = {v: k for k, v in self.vocab.items()}
+
+    def _load_vocab(self, file):
+        vocab = collections.OrderedDict()
+        idx = 0
+        f = open(file, encoding="utf-8")
+        for i in f:
+            token = i.strip()
+            vocab[token] = idx
+            idx += 1
+        f.close()
+        return vocab
+
+    def tok_chinese_word(self, text):
+        return list(jieba.cut(text))
+
+    def _convert(self, tokens, vocab):
+        rslt = []
+        for t in tokens:
+            if t not in vocab:
+                rslt.append(vocab["[UNK]"])
+            else:
+                rslt.append(vocab[t])
+        return rslt
+
+    def convert_tokens_to_ids(self, tokens):
+        return self._convert(tokens, self.vocab)
+
+    def convert_ids_to_tokens(self, ids):
+        return self._convert(ids, self.vocab_inverse)
+
+    def tokenize(self, text):
+        tokens = self.tok_chinese_word(text)
+        return tokens
+
+
+if __name__ == '__main__':
+    vocab_file = r'..\..\..\chinese_L-12_H-768_A-12\vocab.txt'
+    tokenzier = BaseTokenizer(vocab_file)
+    text = "我是一个中国人！"
+    tokens = tokenzier.tokenize(text)
+    print(tokens)
+    ids = tokenzier.convert_tokens_to_ids(tokens)
+    print(ids)
+    tokened = tokenzier.convert_ids_to_tokens(ids)
+    print(tokened)

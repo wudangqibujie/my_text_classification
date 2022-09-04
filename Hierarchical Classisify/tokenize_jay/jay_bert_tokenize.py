@@ -90,6 +90,13 @@ class BaseTokenize:
         tokens = text.split()
         return tokens
 
+    def chinese_cut_tokenize(self, text):
+        text = text.strip()
+        if not text:
+            return []
+        tokens = jieba.cut(text)
+        return list(tokens)
+
     def _is_whitespace(self, char):
         """Checks whether `chars` is a whitespace character."""
         # \t, \n, and \r are technically contorl characters but we treat them
@@ -117,7 +124,6 @@ class BaseTokenize:
         rslt = []
         for t in tokens:
             if t not in vocab:
-                print(t)
                 rslt.append(vocab["[UNK]"])
             else:
                 rslt.append(vocab[t])
@@ -142,8 +148,9 @@ class BaseTokenize:
 
     def basic_tokenize(self, text):
         text = self._clean_text(text)
-        text = self._tokenize_chinese(text)
-        raw_tokens = self.whitespace_tokenize(text)
+        # text = self._tokenize_chinese(text)
+        # raw_tokens = self.whitespace_tokenize(text)
+        raw_tokens = self.chinese_cut_tokenize(text)
         split_tokens = []
         for token in raw_tokens:
             if self.do_lower_case:
@@ -156,7 +163,6 @@ class BaseTokenize:
     def wordpiece_tokenize(self, text):
         output_tokens = []
         for token in self.whitespace_tokenize(text):
-            # print(token)
             chars = list(token)
             if len(chars) > self.max_char_num:
                 output_tokens.append(self.unk_token)
@@ -189,11 +195,58 @@ class BaseTokenize:
 
     def tokenize(self, text):
         split_tokens = []
-        # for token in self.basic_tokenize(text):
-        for token in jieba.cut(text):
-            print(token)
+        for token in self.basic_tokenize(text):
             for sub_token in self.wordpiece_tokenize(token):
                 split_tokens.append(sub_token)
         return split_tokens
 
 
+class BertTokenize(BaseTokenize):
+    def __init__(self, vocab_file, max_seq_length):
+        super(BertTokenize, self).__init__(vocab_file)
+        self.max_seq_length = max_seq_length
+
+    def convert_to_bert_input(self, text):
+        token_ = self.tokenize(text)
+        if len(token_) > self.max_seq_length - 2:
+            token_ = token_[0: (self.max_seq_length - 2)]
+        tokens = []
+        seg_ids = []
+        tokens.append('[CLS]')
+        seg_ids.append(0)
+        for token in token_:
+            tokens.append(token)
+            seg_ids.append(0)
+        tokens.append('[SEP]')
+        seg_ids.append(0)
+
+        input_ids = self.convert_tokens_to_ids(tokens)
+        input_mask = [1] * len(input_ids)
+        while len(input_ids) < self.max_seq_length:
+            input_ids.append(0)
+            input_mask.append(0)
+            seg_ids.append(0)
+        assert len(input_ids) == self.max_seq_length
+        assert len(input_mask) == self.max_seq_length
+        assert len(seg_ids) == self.max_seq_length
+        return input_ids, input_mask, seg_ids
+
+
+if __name__ == '__main__':
+    # tokenizer = BaseTokenize(r'..\..\..\chinese_L-12_H-768_A-12\vocab.txt')
+    # token_a = tokenizer.tokenize("我们野兽,，今天去哪里...吃饭 oldest right？中华人民共和国，今天，成立啦 aaaaa！！！！")
+    # # tokens = ['[CLS]']
+    # tokens = []
+    # tokens.extend(token_a)
+    # # tokens.append('[SEP]')
+    # input_ids = tokenizer.convert_tokens_to_ids(tokens)
+    # print(input_ids)
+    # reverse_tokens = tokenizer.convert_ids_to_tokens(input_ids)
+    # print(reverse_tokens)
+    text = "我们野兽,，今天去哪里...吃饭 oldest right？中华人民共和国，今天，成立啦 aaaaa！！！！"
+    tokenizer = BertTokenize(r'..\..\..\chinese_L-12_H-768_A-12\vocab.txt', 100)
+    input_ids, input_mask, seg_ids = tokenizer.convert_to_bert_input(text)
+    print(input_ids)
+    print(input_mask)
+    print(seg_ids)
+    print(tokenizer.convert_ids_to_tokens(input_ids))
