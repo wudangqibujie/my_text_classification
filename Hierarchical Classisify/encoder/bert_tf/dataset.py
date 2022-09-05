@@ -39,10 +39,12 @@ class Doc2Sample:
         tf.logging.debug("********************* create sent sample start **********************")
         tf.logging.debug(self.doc)
         lst_seg_ix = 0
-        tf.logging.debug(f"doc length: {len(self.doc)}, target length: {self.max_target_length}, total length: {sum([len(i) for i in self.doc])}, length list: {[len(i) for i in self.doc]}")
+        tf.logging.debug(
+            f"doc length: {len(self.doc)}, target length: {self.max_target_length}, total length: {sum([len(i) for i in self.doc])}, length list: {[len(i) for i in self.doc]}")
         while seg_ix <= len(self.doc):
             if segs_length >= self.max_target_length or seg_ix == len(self.doc):
-                tf.logging.debug(f"            ************** now segix {seg_ix}, lst segix: {lst_seg_ix} now cum seglength: {segs_length}  ************")
+                tf.logging.debug(
+                    f"            ************** now segix {seg_ix}, lst segix: {lst_seg_ix} now cum seglength: {segs_length}  ************")
                 split_point = 1
                 if len(segs) > 1:
                     split_point = random.randint(1, len(segs) - 1)
@@ -77,7 +79,8 @@ class Doc2Sample:
                 segs = []
                 lst_seg_ix = seg_ix
                 tf.logging.debug(f"split point: {split_point}")
-                tf.logging.debug(f"is next: {is_next}, now seg_ix: {seg_ix}, now token_a_length: {len(token_a)}, now token_b length: {len(token_b)}")
+                tf.logging.debug(
+                    f"is next: {is_next}, now seg_ix: {seg_ix}, now token_a_length: {len(token_a)}, now token_b length: {len(token_b)}")
 
                 if seg_ix == len(self.doc):
                     seg_ix += 1
@@ -187,9 +190,12 @@ class TraingSample:
         self.mask_lm_labels = mask_lm_labels
 
     def __str__(self):
-        s = ["************** Traing Samples ****************", f"tokens: {len(self.tokens)}--{self.tokens}", f"seg_ids: -{len(self.seg_ids)}-{self.seg_ids}", f"is_next: {self.is_next}",
-             f"mask_lm_position: -{len(self.mask_lm_positions)}-{self.mask_lm_positions}", f"mask_lm_labels: -{len(self.mask_lm_labels)}-{self.mask_lm_labels}"]
+        s = ["************** Traing Samples ****************", f"tokens: {len(self.tokens)}--{self.tokens}",
+             f"seg_ids: -{len(self.seg_ids)}-{self.seg_ids}", f"is_next: {self.is_next}",
+             f"mask_lm_position: -{len(self.mask_lm_positions)}-{self.mask_lm_positions}",
+             f"mask_lm_labels: -{len(self.mask_lm_labels)}-{self.mask_lm_labels}"]
         return "\n".join(s)
+
 
 class WriteCorpusTFDataset:
     def __init__(self, sample_infos, output_files, tokenizer, max_seq_length, max_pred_per_seq):
@@ -244,7 +250,6 @@ class WriteCorpusTFDataset:
             write_flg += 1
             writer = self.writers[write_idx]
             writer.write(self.tf_example.SerializeToString())
-
 
     def _create_int_feature(self, values):
         feature = tf.train.Feature(int64_list=tf.train.Int64List(value=list(values)))
