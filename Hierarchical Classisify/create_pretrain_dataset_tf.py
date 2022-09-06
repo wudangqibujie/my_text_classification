@@ -1,5 +1,5 @@
-from encoder.bert_tf.tokenization import BaseTokenize
-from encoder.bert_tf.dataset import Corpus, Doc2Sample, WriteCorpusTFDataset
+from encoder.jay_bert_tf.tokenization import BaseTokenize
+from encoder.jay_bert_tf.dataset import Corpus, Doc2Sample, WriteCorpusTFDataset
 import tensorflow as tf
 
 

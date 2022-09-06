@@ -1,8 +1,8 @@
-from encoder.bert_tf.tokenization import BaseTokenize
-from encoder.bert_tf.modeling import BertModelClassify
+from encoder.jay_bert_tf.tokenization import BaseTokenize
+from encoder.jay_bert_tf.modeling import BertModelClassify
 import collections
 import tensorflow as tf
-from encoder.bert_tf.config import BertConfig
+from encoder.jay_bert_tf.config import BertConfig
 
 tf.logging.set_verbosity(tf.logging.INFO)
 

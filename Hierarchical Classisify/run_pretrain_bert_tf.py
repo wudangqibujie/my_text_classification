@@ -1,7 +1,7 @@
-from encoder.bert_tf.dataset import ReadTFrecord
+from encoder.jay_bert_tf.dataset import ReadTFrecord
 import tensorflow as tf
-from encoder.bert_tf.config import BertConfig
-from encoder.bert_tf.modeling import BertModel
+from encoder.jay_bert_tf.config import BertConfig
+from encoder.jay_bert_tf.modeling import BertModel
 
 tf.logging.set_verbosity(tf.logging.INFO)
 max_pred_per_seq = 20
@@ -14,7 +14,7 @@ num_warmup_steps = 100
 init_checkpoint = r"D:\NLP_project\chinese_L-12_H-768_A-12\chinese_L-12_H-768_A-12\bert_model.ckpt"
 output_tfrecords = [f"bert_training_tfrecords/train_{i}.tfrecord" for i in range(5)]
 
-# config = BertConfig.from_json_file("encoder/bert_tf/bert_config.json")
+# config = BertConfig.from_json_file("encoder/jay_bert_tf/bert_config.json")
 config = BertConfig.from_json_file(r"D:\NLP_project\chinese_L-12_H-768_A-12\chinese_L-12_H-768_A-12\bert_config.json")
 
 is_traing = True

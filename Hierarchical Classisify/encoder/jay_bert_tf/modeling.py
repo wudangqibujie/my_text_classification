@@ -1,8 +1,8 @@
 import collections
 import re
 import tensorflow as tf
-import encoder.bert_tf.utils as utils
-from encoder.bert_tf.optimization import AdamWeightDecayOptimizer
+import encoder.jay_bert_tf.utils as utils
+from encoder.jay_bert_tf.optimization import AdamWeightDecayOptimizer
 import math
 
 
